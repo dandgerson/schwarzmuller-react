@@ -12,6 +12,8 @@ const App = (props) => {
       <h1>Hi, I'am react App</h1>
       <UserInput />
       <UserOutput />
+      <UserOutput />
+      <UserOutput />
     </div>
   )
 }
