@@ -1,24 +1,27 @@
 import React from 'react'
 
+import './Person.css'
+
 const Person = ({
   handleClick = () => { },
-  handleChanged = () => { },
+  handleChange = () => { },
   ...props
 }) => {
   const style = {
     cursor: 'pointer',
   }
   return (
-    <div>
+    <div className="Person">
       <p>I'm a Person!</p>
       <p
         onClick={() => handleClick('Dmitry')}
         style={style}
       >My name is {props.name} and I am {props.age} years old.</p>
       <input
-      type="text"
-      onChange={changed}
-      value={props.name} />
+        type="text"
+        onChange={handleChange}
+        value={props.name}
+      />
       {props.children && props.children}
     </div>
   )
