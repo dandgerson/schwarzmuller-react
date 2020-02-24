@@ -8,14 +8,14 @@ import UserOutput from './UserOutput'
 const App = (props) => {
   const [username, setUsername] = useState('Dmitry')
 
-  const handleChangeUsername = (newUsername) => {
-    setUsername(newUsername)
+  const handleChangeUsername = (event) => {
+    setUsername(event.target.value)
   }
 
   return (
     <div className="App">
       <h1>Hi, I'am react App</h1>
-      <UserInput />
+      <UserInput handleChangeUsername={handleChangeUsername} />
       <UserOutput username={username} />
       <UserOutput username={username} />
       <UserOutput username={username} />
