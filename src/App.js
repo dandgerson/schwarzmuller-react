@@ -33,10 +33,23 @@ const App = (props) => {
     })
   }
 
+  const style = {
+    backgroundColor: 'white',
+    font: 'inherit',
+    border: '1px solid blue',
+    padding: '8px',
+    cursor: 'pointer',
+  }
+
   return (
     <div className="App">
       <h1>Hi, I'am react App</h1>
-      <button onClick={() => handleSwitchPerson('Dmitry G. Anderson')}>Switch persons</button>
+      <button
+        style={style}
+        onClick={() => handleSwitchPerson('Dmitry G. Anderson')}
+      >
+        Switch persons
+      </button>
       <Person
         name={state.persons[0].name}
         age={state.persons[0].age}
