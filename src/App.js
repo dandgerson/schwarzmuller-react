@@ -8,6 +8,10 @@ import UserOutput from './UserOutput'
 const App = (props) => {
   const [username, setUsername] = useState('Dmitry')
 
+  const handleChangeUsername = (newUsername) => {
+    setUsername(newUsername)
+  }
+
   return (
     <div className="App">
       <h1>Hi, I'am react App</h1>
