@@ -21,6 +21,18 @@ const App = (props) => {
       ],
     })
   }
+
+  const handleChangeName = (event) => {
+    // console.log({target: event.target})
+    setState({
+      persons: [
+        { name: 'Dmitry G. Anderson', age: 32 },
+        { name: event.target.value, age: 24 },
+        { name: 'Stepan V. Motovilov', age: 32 },
+      ],
+    })
+  }
+
   return (
     <div className="App">
       <h1>Hi, I'am react App</h1>
@@ -33,6 +45,7 @@ const App = (props) => {
         name={state.persons[1].name}
         age={state.persons[1].age}
         click={handleSwitchPerson}
+        changed={handleChangeName}
       />
       <Person
         name={state.persons[2].name}

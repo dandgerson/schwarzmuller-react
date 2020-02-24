@@ -1,6 +1,10 @@
 import React from 'react'
 
-const Person = ({ click = () => {}, ...props}) => {
+const Person = ({
+  click = () => { },
+  changed = () => { },
+  ...props
+}) => {
   const style = {
     cursor: 'pointer',
   }
@@ -11,6 +15,10 @@ const Person = ({ click = () => {}, ...props}) => {
         onClick={() => click('Dmitry')}
         style={style}
       >My name is {props.name} and I am {props.age} years old.</p>
+      <input
+      type="text"
+      onChange={changed}
+      value={props.name} />
       {props.children && props.children}
     </div>
   )
