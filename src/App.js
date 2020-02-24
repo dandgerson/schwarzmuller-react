@@ -44,8 +44,8 @@ const App = (props) => {
       <Person
         name={state.persons[1].name}
         age={state.persons[1].age}
-        click={handleSwitchPerson}
-        changed={handleChangeName}
+        handleClick={handleSwitchPerson}
+        handleChanged={handleChangeName}
       />
       <Person
         name={state.persons[2].name}

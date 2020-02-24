@@ -1,8 +1,8 @@
 import React from 'react'
 
 const Person = ({
-  click = () => { },
-  changed = () => { },
+  handleClick = () => { },
+  handleChanged = () => { },
   ...props
 }) => {
   const style = {
@@ -12,7 +12,7 @@ const Person = ({
     <div>
       <p>I'm a Person!</p>
       <p
-        onClick={() => click('Dmitry')}
+        onClick={() => handleClick('Dmitry')}
         style={style}
       >My name is {props.name} and I am {props.age} years old.</p>
       <input
