@@ -2,13 +2,16 @@ import React from 'react'
 
 import './UserOutput.css'
 
-const UserOutput = ({username, ...props}) => {
+const UserOutput = ({ username, ...props }) => {
+  const style = {
+    fontWeight: 'normal',
+    textDecorationLine: 'underline',
+
+  }
   return (
     <div className="UserOutput">
-      <p>User output!</p>
-      <p>{`username: ${username}`}</p>
-      <p>First paragraph</p>
-      <p>Second</p>
+      <p className='UserOutput_title'>User output!</p>
+      <p> <span style={style}>username</span>: <span className='UserOutput_output'>{`${username}`}</span></p>
     </div>
   )
 }
