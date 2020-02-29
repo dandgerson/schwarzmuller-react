@@ -1,5 +1,7 @@
 import React from 'react'
 
+import style from './Person.css'
+
 const Person = ({
   handleClick = () => { },
   handleChange = () => { },
@@ -7,9 +9,10 @@ const Person = ({
 }) => {
 
   return (
-    <div>
+    <div className={style.Person}>
       <p>I'm a Person!</p>
       <p
+        className={style.delete}
         onClick={handleClick}
       >
         My name is {props.name} and I am {props.age} years old.
