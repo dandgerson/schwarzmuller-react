@@ -8,15 +8,20 @@ const Person = ({
   handleChange = () => { },
   ...props
 }) => {
-  const style = {
+  const styleText = {
     cursor: 'pointer',
   }
+  const styleRoot = {
+    '@media (min-width: 500px)': {
+      width: '450px'
+    }
+  }
   return (
-    <div className="Person">
+    <div className="Person" style={styleRoot}>
       <p>I'm a Person!</p>
       <p
         onClick={handleClick}
-        style={style}
+        style={styleText}
       >My name is {props.name} and I am {props.age} years old.</p>
       <input
         type="text"

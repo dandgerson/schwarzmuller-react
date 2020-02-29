@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Radium from 'radium'
+import Radium, { StyleRoot } from 'radium'
 
 import './App.css';
 
@@ -54,18 +54,19 @@ const App = (props) => {
     }
 
     renderedPersons = (
-    <div>
-      {persons.map((person, i) => (
-        <Person
-          key={person.id}
-          handleClick={() => handleDeletePerson(person.id)}
-          handleChange={(event) => handleChangeName(event, person.id)}
-          name={person.name}
-          age={person.age}
-        />
-      ))}
-    </div>
-  )}
+      <div>
+        {persons.map((person, i) => (
+          <Person
+            key={person.id}
+            handleClick={() => handleDeletePerson(person.id)}
+            handleChange={(event) => handleChangeName(event, person.id)}
+            name={person.name}
+            age={person.age}
+          />
+        ))}
+      </div>
+    )
+  }
 
   const classes = []
   if (persons.length <= 2) {
@@ -76,17 +77,19 @@ const App = (props) => {
   }
 
   return (
-    <div className="App">
-      <h1>Hi, I'am react App</h1>
-      <p className={classes.join(' ')}>Dynamically styled text.</p>
-      <button
-        style={style}
-        onClick={handleTogglePersons}
-      >
-        Toggle persons
+    <StyleRoot>
+      <div className="App">
+        <h1>Hi, I'am react App</h1>
+        <p className={classes.join(' ')}>Dynamically styled text.</p>
+        <button
+          style={style}
+          onClick={handleTogglePersons}
+        >
+          Toggle persons
       </button>
-      {renderedPersons}
-    </div>
+        {renderedPersons}
+      </div>
+    </StyleRoot>
   )
 }
 
