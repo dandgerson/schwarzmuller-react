@@ -6,7 +6,7 @@ import './App.css';
 import Person from './Person'
 
 const StyledButton = styled.button`
-  background-color: green;
+  background-color: ${props => props.alt ? 'red' : 'green'};
   color: white;
   font: inherit;
   border: 1px solid blue;
@@ -14,7 +14,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   
   &:hover {
-    background-color: lightgreen;
+    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
     color: black;
   }
   `
@@ -48,12 +48,6 @@ const App = (props) => {
 
   let renderedPersons = null
   if (isPersonsShown) {
-    // style.backgroundColor = 'red'
-    // style[':hover'] = {
-    //   backgroundColor: 'lightcoral',
-    //   color: 'black',
-    // }
-
     renderedPersons = (
       <div>
         {persons.map((person, i) => (
@@ -82,6 +76,7 @@ const App = (props) => {
       <h1>Hi, I'am react App</h1>
       <p className={classes.join(' ')}>Dynamically styled text.</p>
       <StyledButton
+        alt={isPersonsShown}
         onClick={handleTogglePersons}
       >
         Toggle persons
