@@ -1,23 +1,8 @@
 import React, { useState } from 'react';
-import styled from 'styled-components'
 
 import './App.css';
 
 import Person from './Person'
-
-const StyledButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-  
-  &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-  `
 
 const App = (props) => {
   const [persons, setPersons] = useState([
@@ -75,12 +60,11 @@ const App = (props) => {
     <div className="App">
       <h1>Hi, I'am react App</h1>
       <p className={classes.join(' ')}>Dynamically styled text.</p>
-      <StyledButton
-        alt={isPersonsShown}
+      <button
         onClick={handleTogglePersons}
       >
         Toggle persons
-      </StyledButton>
+      </button>
       {renderedPersons}
     </div>
   )
