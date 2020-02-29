@@ -32,7 +32,8 @@ const App = (props) => {
   }
 
   const style = {
-    backgroundColor: 'white',
+    backgroundColor: 'green',
+    color: 'white',
     font: 'inherit',
     border: '1px solid blue',
     padding: '8px',
@@ -40,7 +41,10 @@ const App = (props) => {
   }
 
   let renderedPersons = null
-  isPersonsShown && (renderedPersons = (
+  if (isPersonsShown) {
+    style.backgroundColor = 'red'
+
+    renderedPersons = (
     <div>
       {persons.map((person, i) => (
         <Person
@@ -52,7 +56,7 @@ const App = (props) => {
         />
       ))}
     </div>
-  ))
+  )}
 
   return (
     <div className="App">
