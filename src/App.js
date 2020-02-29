@@ -16,6 +16,17 @@ const App = (props) => {
     setPersons(persons.filter(person => !(person.id === id)))
   }
 
+  const handleChangeName = (event, id) => {
+    setPersons(persons.reduce((acc, current) => {
+      current.id === id ? acc.push({
+        ...current,
+        name: event.target.value,
+      }) : acc.push(current)
+
+      return acc
+    }, []))
+  }
+
   const handleTogglePersons = () => {
     setPersonsShown(!isPersonsShown)
   }
@@ -35,6 +46,7 @@ const App = (props) => {
         <Person
           key={person.id}
           handleClick={() => handleDeletePerson(person.id)}
+          handleChange={(event) => handleChangeName(event, person.id)}
           name={person.name}
           age={person.age}
         />
