@@ -5,6 +5,20 @@ import './App.css';
 
 import Person from './Person'
 
+const StyledButton = styled.button`
+  background-color: green;
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: lightgreen;
+    color: black;
+  }
+  `
+
 const App = (props) => {
   const [persons, setPersons] = useState([
     { id: 'aselk3', name: 'Dmitry', age: 32 },
@@ -32,26 +46,13 @@ const App = (props) => {
     setPersonsShown(!isPersonsShown)
   }
 
-  const style = {
-    backgroundColor: 'green',
-    color: 'white',
-    font: 'inherit',
-    border: '1px solid blue',
-    padding: '8px',
-    cursor: 'pointer',
-    ':hover': {
-      backgroundColor: 'lightgreen',
-      color: 'black',
-    }
-  }
-
   let renderedPersons = null
   if (isPersonsShown) {
-    style.backgroundColor = 'red'
-    style[':hover'] = {
-      backgroundColor: 'lightcoral',
-      color: 'black',
-    }
+    // style.backgroundColor = 'red'
+    // style[':hover'] = {
+    //   backgroundColor: 'lightcoral',
+    //   color: 'black',
+    // }
 
     renderedPersons = (
       <div>
@@ -77,17 +78,16 @@ const App = (props) => {
   }
 
   return (
-      <div className="App">
-        <h1>Hi, I'am react App</h1>
-        <p className={classes.join(' ')}>Dynamically styled text.</p>
-        <button
-          style={style}
-          onClick={handleTogglePersons}
-        >
-          Toggle persons
-      </button>
-        {renderedPersons}
-      </div>
+    <div className="App">
+      <h1>Hi, I'am react App</h1>
+      <p className={classes.join(' ')}>Dynamically styled text.</p>
+      <StyledButton
+        onClick={handleTogglePersons}
+      >
+        Toggle persons
+      </StyledButton>
+      {renderedPersons}
+    </div>
   )
 }
 

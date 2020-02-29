@@ -13,23 +13,24 @@ const StyledDiv = styled.div`
     width: 450px;
   }
 `
+const StyledP = styled.p`
+  cursor: 'pointer';
+`
 
 const Person = ({
   handleClick = () => { },
   handleChange = () => { },
   ...props
 }) => {
-  const styleText = {
-    cursor: 'pointer',
-  }
 
   return (
     <StyledDiv>
       <p>I'm a Person!</p>
-      <p
+      <StyledP
         onClick={handleClick}
-        style={styleText}
-      >My name is {props.name} and I am {props.age} years old.</p>
+      >
+        My name is {props.name} and I am {props.age} years old.
+      </StyledP>
       <input
         type="text"
         onChange={handleChange}
