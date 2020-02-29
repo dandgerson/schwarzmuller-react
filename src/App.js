@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Radium from 'radium'
 
 import './App.css';
 
@@ -38,11 +39,19 @@ const App = (props) => {
     border: '1px solid blue',
     padding: '8px',
     cursor: 'pointer',
+    ':hover': {
+      backgroundColor: 'lightgreen',
+      color: 'black',
+    }
   }
 
   let renderedPersons = null
   if (isPersonsShown) {
     style.backgroundColor = 'red'
+    style[':hover'] = {
+      backgroundColor: 'lightcoral',
+      color: 'black',
+    }
 
     renderedPersons = (
     <div>
@@ -81,4 +90,4 @@ const App = (props) => {
   )
 }
 
-export default App;
+export default Radium(App);
