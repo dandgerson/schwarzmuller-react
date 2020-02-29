@@ -58,9 +58,18 @@ const App = (props) => {
     </div>
   )}
 
+  const classes = []
+  if (persons.length <= 2) {
+    classes.push('red')
+  }
+  if (persons.length <= 1) {
+    classes.push('bold')
+  }
+
   return (
     <div className="App">
       <h1>Hi, I'am react App</h1>
+      <p className={classes.join(' ')}>Dynamically styled text.</p>
       <button
         style={style}
         onClick={handleTogglePersons}
