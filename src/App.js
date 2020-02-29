@@ -5,16 +5,14 @@ import './App.css';
 import Person from './Person'
 
 const App = (props) => {
-  const [state, setState] = useState({
-    persons: [
-      { name: 'Dmitry', age: 32 },
-      { name: 'Max', age: 24 },
-      { name: 'Stepan', age: 32 },
-    ],
-  })
-  const [isPersonShown, setPersonShown] = useState(false)
+  const [persons, setPersons] = useState([
+    { name: 'Dmitry', age: 32 },
+    { name: 'Max', age: 24 },
+    { name: 'Stepan', age: 32 },
+  ])
+  const [isPersonsShown, setPersonsShown] = useState(false)
   const handleSwitchPerson = (newName) => {
-    setState({
+    setPersons({
       persons: [
         { name: newName, age: 32 },
         { name: 'Maxim P. Pavlov', age: 24 },
@@ -25,17 +23,15 @@ const App = (props) => {
 
   const handleChangeName = (event) => {
     // console.log({target: event.target})
-    setState({
-      persons: [
-        { name: 'Dmitry G. Anderson', age: 32 },
-        { name: event.target.value, age: 24 },
-        { name: 'Stepan V. Motovilov', age: 32 },
-      ],
-    })
+    setPersons([
+      { name: 'Dmitry G. Anderson', age: 32 },
+      { name: event.target.value, age: 24 },
+      { name: 'Stepan V. Motovilov', age: 32 },
+    ])
   }
 
   const handleTogglePersons = () => {
-    setPersonShown(!isPersonShown)
+    setPersonsShown(!isPersonsShown)
   }
 
   const style = {
@@ -46,23 +42,16 @@ const App = (props) => {
     cursor: 'pointer',
   }
 
-  let persons = null
-  isPersonShown && (persons = (
+  let renderedPersons = null
+  isPersonsShown && (renderedPersons = (
     <div>
-      <Person
-        name={state.persons[0].name}
-        age={state.persons[0].age}
-      />
-      <Person
-        name={state.persons[1].name}
-        age={state.persons[1].age}
-        handleClick={handleSwitchPerson}
-        handleChange={handleChangeName}
-      />
-      <Person
-        name={state.persons[2].name}
-        age={state.persons[2].age}
-      />
+      {persons.map((person, i) => (
+        <Person
+          key={i}
+          name={person.name}
+          age={person.age}
+        />
+      ))}
     </div>
   ))
 
@@ -75,7 +64,7 @@ const App = (props) => {
       >
         Toggle persons
       </button>
-      {persons}
+      {renderedPersons}
     </div>
   )
 }
