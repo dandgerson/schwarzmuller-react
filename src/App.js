@@ -11,14 +11,9 @@ const App = (props) => {
     { name: 'Stepan', age: 32 },
   ])
   const [isPersonsShown, setPersonsShown] = useState(false)
-  const handleSwitchPerson = (newName) => {
-    setPersons({
-      persons: [
-        { name: newName, age: 32 },
-        { name: 'Maxim P. Pavlov', age: 24 },
-        { name: 'Stepan V. Motovilov', age: 32 },
-      ],
-    })
+
+  const handleDeletePerson = (id) => {
+    setPersons(persons.filter((_, i) => !(i === id)))
   }
 
   const handleChangeName = (event) => {
@@ -48,6 +43,8 @@ const App = (props) => {
       {persons.map((person, i) => (
         <Person
           key={i}
+          handleClick={() => handleDeletePerson(i)}
+          id={i}
           name={person.name}
           age={person.age}
         />

@@ -14,7 +14,7 @@ const Person = ({
     <div className="Person">
       <p>I'm a Person!</p>
       <p
-        onClick={() => handleClick('Dmitry')}
+        onClick={handleClick}
         style={style}
       >My name is {props.name} and I am {props.age} years old.</p>
       <input
