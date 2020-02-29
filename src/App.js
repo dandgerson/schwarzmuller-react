@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Radium, { StyleRoot } from 'radium'
+import styled from 'styled-components'
 
 import './App.css';
 
@@ -77,7 +77,6 @@ const App = (props) => {
   }
 
   return (
-    <StyleRoot>
       <div className="App">
         <h1>Hi, I'am react App</h1>
         <p className={classes.join(' ')}>Dynamically styled text.</p>
@@ -89,8 +88,7 @@ const App = (props) => {
       </button>
         {renderedPersons}
       </div>
-    </StyleRoot>
   )
 }
 
-export default Radium(App);
+export default App;
