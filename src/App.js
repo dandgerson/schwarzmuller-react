@@ -12,6 +12,7 @@ const App = (props) => {
       { name: 'Stepan', age: 32 },
     ],
   })
+  const [isPersonShown, setPersonShown] = useState(false)
   const handleSwitchPerson = (newName) => {
     setState({
       persons: [
@@ -33,6 +34,10 @@ const App = (props) => {
     })
   }
 
+  const handleTogglePersons = () => {
+    setPersonShown(!isPersonShown)
+  }
+
   const style = {
     backgroundColor: 'white',
     font: 'inherit',
@@ -46,24 +51,28 @@ const App = (props) => {
       <h1>Hi, I'am react App</h1>
       <button
         style={style}
-        onClick={() => handleSwitchPerson('Dmitry G. Anderson')}
+        onClick={handleTogglePersons}
       >
-        Switch persons
+        Toggle persons
       </button>
-      <Person
-        name={state.persons[0].name}
-        age={state.persons[0].age}
-      />
-      <Person
-        name={state.persons[1].name}
-        age={state.persons[1].age}
-        handleClick={handleSwitchPerson}
-        handleChange={handleChangeName}
-      />
-      <Person
-        name={state.persons[2].name}
-        age={state.persons[2].age}
-      />
+      {isPersonShown && (
+        <div>
+          <Person
+            name={state.persons[0].name}
+            age={state.persons[0].age}
+          />
+          <Person
+            name={state.persons[1].name}
+            age={state.persons[1].age}
+            handleClick={handleSwitchPerson}
+            handleChange={handleChangeName}
+          />
+          <Person
+            name={state.persons[2].name}
+            age={state.persons[2].age}
+          />
+        </div>
+      )}
     </div>
   )
 }
