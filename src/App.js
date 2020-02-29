@@ -31,11 +31,11 @@ const App = (props) => {
     setPersonsShown(!isPersonsShown)
   }
 
-  const buttonClasses = [style.button]
+  let buttonClasses = ''
 
   let renderedPersons = null
   if (isPersonsShown) {
-    buttonClasses.push(style.Red)
+    buttonClasses = style.Red
 
     renderedPersons = (
       <div>
@@ -65,7 +65,7 @@ const App = (props) => {
       <h1>Hi, I'am react App</h1>
       <p className={assignedClasses.join(' ')}>Dynamically styled text.</p>
       <button
-        className={buttonClasses.join(' ')}
+        className={buttonClasses}
         onClick={handleTogglePersons}
       >
         Toggle persons
