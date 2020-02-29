@@ -46,6 +46,26 @@ const App = (props) => {
     cursor: 'pointer',
   }
 
+  let persons = null
+  isPersonShown && (persons = (
+    <div>
+      <Person
+        name={state.persons[0].name}
+        age={state.persons[0].age}
+      />
+      <Person
+        name={state.persons[1].name}
+        age={state.persons[1].age}
+        handleClick={handleSwitchPerson}
+        handleChange={handleChangeName}
+      />
+      <Person
+        name={state.persons[2].name}
+        age={state.persons[2].age}
+      />
+    </div>
+  ))
+
   return (
     <div className="App">
       <h1>Hi, I'am react App</h1>
@@ -55,24 +75,7 @@ const App = (props) => {
       >
         Toggle persons
       </button>
-      {isPersonShown && (
-        <div>
-          <Person
-            name={state.persons[0].name}
-            age={state.persons[0].age}
-          />
-          <Person
-            name={state.persons[1].name}
-            age={state.persons[1].age}
-            handleClick={handleSwitchPerson}
-            handleChange={handleChangeName}
-          />
-          <Person
-            name={state.persons[2].name}
-            age={state.persons[2].age}
-          />
-        </div>
-      )}
+      {persons}
     </div>
   )
 }
