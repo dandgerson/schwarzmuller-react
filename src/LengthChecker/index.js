@@ -1,8 +1,27 @@
 import React from 'react'
 
-const LengthChecker = ({ length }) => {
+const LengthChecker = ({ length, demand }) => {
+  console.log({
+    length,
+    demand,
+  })
+  let result = ''
+  switch (true) {
+    case length < demand: {
+      result = 'Text too short'
+      break
+    }
+    case length > demand: {
+      result = 'Text long anough'
+      break
+    }
+    default: {
+      result = 'Text length is valid'
+      break
+    }
+  }
   return (
-    <p>{length} is valid</p>
+    <p>{result}</p>
   )
 }
 

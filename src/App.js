@@ -17,7 +17,9 @@ const App = (props) => {
       <input type="text" onChange={handleChangeStr} value={str} />
       <p>{str.length}</p>
 
-      <LengthChecker length={str.length} />
+      <LengthChecker
+        length={str.length}
+        demand={5} />
     </div>
   )
 }
