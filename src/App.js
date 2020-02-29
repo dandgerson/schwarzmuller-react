@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './App.css';
+import style from './App.css';
 
 import Person from './Person'
 
@@ -31,8 +31,12 @@ const App = (props) => {
     setPersonsShown(!isPersonsShown)
   }
 
+  const buttonClasses = [style.button]
+
   let renderedPersons = null
   if (isPersonsShown) {
+    buttonClasses.push(style.Red)
+
     renderedPersons = (
       <div>
         {persons.map((person, i) => (
@@ -48,19 +52,20 @@ const App = (props) => {
     )
   }
 
-  const classes = []
+  const assignedClasses = []
   if (persons.length <= 2) {
-    classes.push('red')
+    assignedClasses.push(style.red)
   }
   if (persons.length <= 1) {
-    classes.push('bold')
+    assignedClasses.push(style.bold)
   }
 
   return (
-    <div className="App">
+    <div className={style.App}>
       <h1>Hi, I'am react App</h1>
-      <p className={classes.join(' ')}>Dynamically styled text.</p>
+      <p className={assignedClasses.join(' ')}>Dynamically styled text.</p>
       <button
+        className={buttonClasses.join(' ')}
         onClick={handleTogglePersons}
       >
         Toggle persons
