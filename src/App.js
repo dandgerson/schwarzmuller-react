@@ -6,23 +6,14 @@ import Person from './Person'
 
 const App = (props) => {
   const [persons, setPersons] = useState([
-    { name: 'Dmitry', age: 32 },
-    { name: 'Max', age: 24 },
-    { name: 'Stepan', age: 32 },
+    { id: 'aselk3', name: 'Dmitry', age: 32 },
+    { id: 'aknee32', name: 'Max', age: 24 },
+    { id: 'fngrrk321', name: 'Stepan', age: 32 },
   ])
   const [isPersonsShown, setPersonsShown] = useState(false)
 
   const handleDeletePerson = (id) => {
-    setPersons(persons.filter((_, i) => !(i === id)))
-  }
-
-  const handleChangeName = (event) => {
-    // console.log({target: event.target})
-    setPersons([
-      { name: 'Dmitry G. Anderson', age: 32 },
-      { name: event.target.value, age: 24 },
-      { name: 'Stepan V. Motovilov', age: 32 },
-    ])
+    setPersons(persons.filter(person => !(person.id === id)))
   }
 
   const handleTogglePersons = () => {
@@ -42,9 +33,8 @@ const App = (props) => {
     <div>
       {persons.map((person, i) => (
         <Person
-          key={i}
-          handleClick={() => handleDeletePerson(i)}
-          id={i}
+          key={person.id}
+          handleClick={() => handleDeletePerson(person.id)}
           name={person.name}
           age={person.age}
         />
