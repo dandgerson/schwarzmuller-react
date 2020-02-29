@@ -12,15 +12,28 @@ const App = (props) => {
     setStr(event.target.value)
   }
 
+  const handleDeletChar = (id) => {
+    setStr(str.split('').filter((_, i) => !(i === id)).join(''))
+  }
+
   return (
     <div className="App">
       <h1>Hi, I'am react App</h1>
       <input type="text" onChange={handleChangeStr} value={str} />
       <p>{str.length}</p>
-
-      {str.split('').map(char => (
-        <Char char={char} />
-      ))}
+      <div style={{
+        display: 'flex',
+        flexFlow: 'row wrap',
+        justifyContent: 'center',
+      }}>
+        {str.split('').map((char, i) => (
+          <Char
+            key={i}
+            id={i}
+            char={char}
+            handleClick={handleDeletChar} />
+        ))}
+      </div>
 
       <LengthChecker
         length={str.length}

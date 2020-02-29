@@ -1,10 +1,6 @@
 import React from 'react'
 
 const LengthChecker = ({ length, demand }) => {
-  console.log({
-    length,
-    demand,
-  })
   let result = ''
   switch (true) {
     case length < demand: {
@@ -20,6 +16,7 @@ const LengthChecker = ({ length, demand }) => {
       break
     }
   }
+
   return (
     <p>{result}</p>
   )

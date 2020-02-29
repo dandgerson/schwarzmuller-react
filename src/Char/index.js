@@ -1,16 +1,20 @@
 import React from 'react'
 
-const Char = ({ char }) => {
+const Char = ({ char, handleClick, id }) => {
   const style = {
-    display: 'inline-block',
+    width: '16px',
+    height: '16px',
     padding: '16px',
-    textAlign: 'center',
     margin: '16px',
     border: '1px solid black',
+    textAlign: 'center',
+    cursor: 'pointer',
   }
 
   return (
-    <div style={style}>
+    <div
+    onClick={handleClick.bind(null, id)}
+    style={style}>
       <span>{char}</span>
     </div>
   )
