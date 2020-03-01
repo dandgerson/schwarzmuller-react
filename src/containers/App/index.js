@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import style from './App.css';
 
-import Person from './Person'
+import Person from 'src/components/Persons/Person'
 
 const App = (props) => {
   const [persons, setPersons] = useState([
