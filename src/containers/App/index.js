@@ -53,6 +53,7 @@ const App = (props) => {
         handlers={{
           handleTogglePersons,
         }}
+        title={props.title}
       />
       <div>
         {renderedPersons}

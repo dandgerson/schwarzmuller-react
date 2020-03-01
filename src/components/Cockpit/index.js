@@ -2,7 +2,7 @@ import React from 'react'
 
 import style from './Cockpit.css'
 
-const Cockpit = ({state, handlers}) => {
+const Cockpit = ({state, handlers, ...restProps}) => {
   
   const assignedClasses = []
   state.persons.length <= 2 && assignedClasses.push(style.red)
@@ -13,7 +13,7 @@ const Cockpit = ({state, handlers}) => {
 
   return (
   <div className={style.Cockpit}>
-    <h1>Hi, I'am react App</h1>
+    <h1>{restProps.title}</h1>
     <p className={assignedClasses.join(' ')}>Dynamically styled text.</p>
     <button
       className={buttonClasses}
