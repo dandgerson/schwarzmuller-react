@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 import style from './App.css';
 
-import Person from 'src/components/Persons/Person'
+import Cockpit from 'src/components/Cockpit'
+import Persons from 'src/components/Persons'
 
 const App = (props) => {
   const [persons, setPersons] = useState([
@@ -12,13 +13,13 @@ const App = (props) => {
   ])
   const [isPersonsShown, setPersonsShown] = useState(false)
 
-  const handleDeletePerson = (id) => {
-    setPersons(persons.filter(person => !(person.id === id)))
+  const handleDeletePerson = (data) => {
+    setPersons(persons.filter(person => !(person.id === data.id)))
   }
 
-  const handleChangeName = (event, id) => {
+  const handleChangeName = (data, event) => {
     setPersons(persons.reduce((acc, current) => {
-      current.id === id ? acc.push({
+      current.id === data.id ? acc.push({
         ...current,
         name: event.target.value,
       }) : acc.push(current)
@@ -31,46 +32,31 @@ const App = (props) => {
     setPersonsShown(!isPersonsShown)
   }
 
-  let buttonClasses = ''
-
   let renderedPersons = null
-  if (isPersonsShown) {
-    buttonClasses = style.Red
-
-    renderedPersons = (
-      <div>
-        {persons.map((person, i) => (
-          <Person
-            key={person.id}
-            handleClick={() => handleDeletePerson(person.id)}
-            handleChange={(event) => handleChangeName(event, person.id)}
-            name={person.name}
-            age={person.age}
-          />
-        ))}
-      </div>
-    )
-  }
-
-  const assignedClasses = []
-  if (persons.length <= 2) {
-    assignedClasses.push(style.red)
-  }
-  if (persons.length <= 1) {
-    assignedClasses.push(style.bold)
-  }
+  isPersonsShown && (renderedPersons = (
+    <Persons
+      persons={persons}
+      handlers={{
+        handleChangeName,
+        handleDeletePerson,
+      }}
+    />
+  ))
 
   return (
     <div className={style.App}>
-      <h1>Hi, I'am react App</h1>
-      <p className={assignedClasses.join(' ')}>Dynamically styled text.</p>
-      <button
-        className={buttonClasses}
-        onClick={handleTogglePersons}
-      >
-        Toggle persons
-      </button>
-      {renderedPersons}
+      <Cockpit
+        state={{
+          persons,
+          isPersonsShown,
+        }}
+        handlers={{
+          handleTogglePersons,
+        }}
+      />
+      <div>
+        {renderedPersons}
+      </div>
     </div>
   )
 }
