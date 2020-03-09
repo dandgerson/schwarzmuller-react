@@ -3,8 +3,9 @@ import React, { useEffect } from 'react'
 import style from './Cockpit.css'
 
 const Cockpit = ({
-  state: { persons, isPersonsShown },
-  handlers: { handleTogglePersons },
+  personsLength,
+  isPersonsShown,
+  handleTogglePersons,
   ...restProps
 }) => {
   useEffect(() => {
@@ -29,8 +30,8 @@ const Cockpit = ({
   })
 
   const assignedClasses = []
-  persons.length <= 2 && assignedClasses.push(style.red)
-  persons.length <= 1 && assignedClasses.push(style.bold)
+  personsLength <= 2 && assignedClasses.push(style.red)
+  personsLength <= 1 && assignedClasses.push(style.bold)
 
   const buttonClasses = []
   isPersonsShown && buttonClasses.push(style.Red)
@@ -49,4 +50,4 @@ const Cockpit = ({
   )
 }
 
-export default Cockpit
+export default React.memo(Cockpit)

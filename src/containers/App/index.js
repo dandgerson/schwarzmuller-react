@@ -102,13 +102,9 @@ class App extends Component {
           Toggle Cockpit
         </button>
         {this.state.isCockpitShown && <Cockpit
-          state={{
-            persons: this.state.persons,
-            isPersonsShown: this.state.isPersonsShown,
-          }}
-          handlers={{
-            handleTogglePersons: this.handleTogglePersons,
-          }}
+          personsLength={this.state.persons.length}
+          isPersonsShown={this.state.isPersonsShown}
+          handleTogglePersons={this.handleTogglePersons}
           title={this.props.title}
         />}
         <div>
