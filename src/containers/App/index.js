@@ -29,6 +29,20 @@ class App extends Component {
     console.log('[App.js] componentDidMount')
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate', nextState.persons.length > 0)
+    return nextState.persons.length > 0
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('[App.js] getSnapshotBeforeUpdate')
+    return { message: 'Snapshot!'}
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('[App.js] componentDidUpdate', snapshot)
+  }
+
   handleDeletePerson = (event, payload) => {
     this.setState({
       persons: this.state.persons.filter(person => !(person.id === payload.id)),
