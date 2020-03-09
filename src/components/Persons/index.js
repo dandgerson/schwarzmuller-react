@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import Person from 'src/components/Persons/Person'
 
-class Persons extends Component {
+class Persons extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {}
@@ -13,11 +13,11 @@ class Persons extends Component {
     return state
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('[Persons.js] shouldComponentUpdate', {nextProps}, {nextState}, (nextProps.persons !== this.props.persons))
-    if (nextProps.persons !== this.props.persons) return true
-    return false
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('[Persons.js] shouldComponentUpdate', {nextProps}, {nextState}, (nextProps.persons !== this.props.persons))
+  //   if (nextProps.persons !== this.props.persons) return true
+  //   return false
+  // }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('[Persons.js] getSnapshotBeforeUpdate', {prevProps}, {prevState})
