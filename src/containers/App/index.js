@@ -36,8 +36,8 @@ class App extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('[App.js] shouldComponentUpdate', nextState.persons.length > 0)
-    return nextState.persons.length > 0
+    console.log('[App.js] shouldComponentUpdate', true)
+    return true
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {

@@ -15,7 +15,7 @@ class Persons extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[Persons.js] shouldComponentUpdate', {nextProps}, {nextState})
-    return true
+    return nextProps.persons.length > 0
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
