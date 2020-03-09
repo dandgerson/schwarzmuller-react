@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import style from './Cockpit.css'
 
@@ -7,6 +7,10 @@ const Cockpit = ({
   handlers: { handleTogglePersons },
   ...restProps
 }) => {
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect')
+  })
+
   const assignedClasses = []
   persons.length <= 2 && assignedClasses.push(style.red)
   persons.length <= 1 && assignedClasses.push(style.bold)

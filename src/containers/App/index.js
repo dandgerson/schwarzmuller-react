@@ -11,6 +11,9 @@ class App extends Component {
     console.log('[App.js] constructor')
   }
 
+  /**
+   * Declare state as public property
+   */
   state = {
     persons: [
       { id: 'aselk3', name: 'Dmitry', age: 32 },
@@ -20,8 +23,11 @@ class App extends Component {
     isPersonsShown: false,
   }
 
+  /**
+   * Lifecycle methods
+   */
   static getDerivedStateFromProps(props, state) {
-    console.log('[App.js] getDerivedStateFromProps', props)
+    console.log('[App.js] getDerivedStateFromProps', {props}, {state})
     return state
   }
 
@@ -43,6 +49,9 @@ class App extends Component {
     console.log('[App.js] componentDidUpdate', snapshot)
   }
 
+  /**
+   * Handlers
+   */
   handleDeletePerson = (event, payload) => {
     this.setState({
       persons: this.state.persons.filter(person => !(person.id === payload.id)),

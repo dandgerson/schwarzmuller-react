@@ -9,17 +9,17 @@ class Persons extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log('[Persons.js] getDerivedStateFromProps')
+    console.log('[Persons.js] getDerivedStateFromProps', {props}, {state})
     return state
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('[Persons.js] shouldComponentUpdate')
+    console.log('[Persons.js] shouldComponentUpdate', {nextProps}, {nextState})
     return true
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    console.log('[Persons.js] getSnapshotBeforeUpdate')
+    console.log('[Persons.js] getSnapshotBeforeUpdate', {prevProps}, {prevState})
     return { message: 'Snapshot!'}
   }
 
