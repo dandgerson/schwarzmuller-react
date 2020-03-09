@@ -1,23 +1,44 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import Person from 'src/components/Persons/Person'
 
-const Persons = ({
-  state: { persons },
-  handlers: { handleChangeName, handleDeletePerson },
-}) => {
-  console.log('[Persons.js] rendering...')
-  return (persons.map((person, i) => (
-    <Person
-      key={person.id}
-      handlers={{
-        handleClick: handleDeletePerson.bind(null, { id: person.id }),
-        handleChange: handleChangeName.bind(null, { id: person.id }),
-      }}
-      name={person.name}
-      age={person.age}
-    />
-  )))
+class Persons extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[Persons.js] getDerivedStateFromProps')
+    return state
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[Persons.js] shouldComponentUpdate')
+    return true
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('[Persons.js] getSnapshotBeforeUpdate')
+    return { message: 'Snapshot!'}
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('[Persons.js] componentDidUpdate', snapshot)
+  }
+
+  render() {
+    console.log('[Persons.js] rendering...')
+    return (this.props.persons.map((person, i) => (
+      <Person
+        key={person.id}
+        handleClick={(event) => this.props.handleDeletePerson(event, { id: person.id })}
+        handleChange={(event) => this.props.handleChangeName(event, { id: person.id })}
+        name={person.name}
+        age={person.age}
+      />
+    )))
+  }
 }
 
 export default Persons

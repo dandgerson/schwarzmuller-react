@@ -29,13 +29,13 @@ class App extends Component {
     console.log('[App.js] componentDidMount')
   }
 
-  handleDeletePerson = (payload) => {
+  handleDeletePerson = (event, payload) => {
     this.setState({
       persons: this.state.persons.filter(person => !(person.id === payload.id)),
     })
   }
 
-  handleChangeName = (payload, event) => {
+  handleChangeName = (event, payload) => {
     this.setState({
       persons: this.state.persons.reduce((acc, current) => {
         current.id === payload.id ? acc.push({
@@ -59,13 +59,9 @@ class App extends Component {
     let renderedPersons = null
     this.state.isPersonsShown && (renderedPersons = (
       <Persons
-        state={{
-          persons: this.state.persons,
-        }}
-        handlers={{
-          handleChangeName: this.handleChangeName,
-          handleDeletePerson: this.handleDeletePerson,
-        }}
+        persons={this.state.persons}
+        handleChangeName={this.handleChangeName}
+        handleDeletePerson={this.handleDeletePerson}
       />
     ))
 
