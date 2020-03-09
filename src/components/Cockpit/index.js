@@ -2,26 +2,30 @@ import React from 'react'
 
 import style from './Cockpit.css'
 
-const Cockpit = ({state, handlers, ...restProps}) => {
-  
+const Cockpit = ({
+  state: { persons, isPersonsShown },
+  handlers: { handleTogglePersons },
+  ...restProps
+}) => {
   const assignedClasses = []
-  state.persons.length <= 2 && assignedClasses.push(style.red)
-  state.persons.length <= 1 && assignedClasses.push(style.bold)
+  persons.length <= 2 && assignedClasses.push(style.red)
+  persons.length <= 1 && assignedClasses.push(style.bold)
 
-  let buttonClasses = ''
-  state.isPersonsShown && (buttonClasses = style.Red)
+  const buttonClasses = []
+  isPersonsShown && buttonClasses.push(style.Red)
 
   return (
-  <div className={style.Cockpit}>
-    <h1>{restProps.title}</h1>
-    <p className={assignedClasses.join(' ')}>Dynamically styled text.</p>
-    <button
-      className={buttonClasses}
-      onClick={handlers.handleTogglePersons}
-    >
-      Toggle persons
+    <div className={style.Cockpit}>
+      <h1>{restProps.title}</h1>
+      <p className={assignedClasses.join(' ')}>Dynamically styled text.</p>
+      <button
+        className={buttonClasses.join(' ')}
+        onClick={handleTogglePersons}
+      >
+        Toggle persons
       </button>
-  </div>
-)}
+    </div>
+  )
+}
 
 export default Cockpit

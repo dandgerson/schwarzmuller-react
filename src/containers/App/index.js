@@ -1,65 +1,92 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 
 import style from './App.css';
 
 import Cockpit from 'src/components/Cockpit'
 import Persons from 'src/components/Persons'
 
-const App = (props) => {
-  const [persons, setPersons] = useState([
-    { id: 'aselk3', name: 'Dmitry', age: 32 },
-    { id: 'aknee32', name: 'Max', age: 24 },
-    { id: 'fngrrk321', name: 'Stepan', age: 32 },
-  ])
-  const [isPersonsShown, setPersonsShown] = useState(false)
-
-  const handleDeletePerson = (data) => {
-    setPersons(persons.filter(person => !(person.id === data.id)))
+class App extends Component {
+  constructor(props) {
+    super(props)
+    console.log('[App.js] constructor')
   }
 
-  const handleChangeName = (data, event) => {
-    setPersons(persons.reduce((acc, current) => {
-      current.id === data.id ? acc.push({
-        ...current,
-        name: event.target.value,
-      }) : acc.push(current)
-
-      return acc
-    }, []))
+  state = {
+    persons: [
+      { id: 'aselk3', name: 'Dmitry', age: 32 },
+      { id: 'aknee32', name: 'Max', age: 24 },
+      { id: 'fngrrk321', name: 'Stepan', age: 32 },
+    ],
+    isPersonsShown: false,
   }
 
-  const handleTogglePersons = () => {
-    setPersonsShown(!isPersonsShown)
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props)
+    return state
   }
 
-  let renderedPersons = null
-  isPersonsShown && (renderedPersons = (
-    <Persons
-      persons={persons}
-      handlers={{
-        handleChangeName,
-        handleDeletePerson,
-      }}
-    />
-  ))
+  componentDidMount() {
+    console.log('[App.js] componentDidMount')
+  }
 
-  return (
-    <div className={style.App}>
-      <Cockpit
+  handleDeletePerson = (payload) => {
+    this.setState({
+      persons: this.state.persons.filter(person => !(person.id === payload.id)),
+    })
+  }
+
+  handleChangeName = (payload, event) => {
+    this.setState({
+      persons: this.state.persons.reduce((acc, current) => {
+        current.id === payload.id ? acc.push({
+          ...current,
+          name: event.target.value,
+        }) : acc.push(current)
+
+        return acc
+      }, []),
+    })
+  }
+
+  handleTogglePersons = () => {
+    this.setState({
+      isPersonsShown: !this.state.isPersonsShown,
+    })
+  }
+
+  render() {
+    console.log('[App.js] render')
+    let renderedPersons = null
+    this.state.isPersonsShown && (renderedPersons = (
+      <Persons
         state={{
-          persons,
-          isPersonsShown,
+          persons: this.state.persons,
         }}
         handlers={{
-          handleTogglePersons,
+          handleChangeName: this.handleChangeName,
+          handleDeletePerson: this.handleDeletePerson,
         }}
-        title={props.title}
       />
-      <div>
-        {renderedPersons}
+    ))
+
+    return (
+      <div className={style.App}>
+        <Cockpit
+          state={{
+            persons: this.state.persons,
+            isPersonsShown: this.state.isPersonsShown,
+          }}
+          handlers={{
+            handleTogglePersons: this.handleTogglePersons,
+          }}
+          title={this.props.title}
+        />
+        <div>
+          {renderedPersons}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default App;

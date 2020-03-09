@@ -3,11 +3,10 @@ import React from 'react'
 import style from './Person.css'
 
 const Person = ({
-  handleClick = () => { },
-  handleChange = () => { },
-  ...props
+  handlers: { handleChange, handleClick},
+  ...restProps
 }) => {
-
+  console.log('[Person.js] rendering...')
   return (
     <div className={style.Person}>
       <p>I'm a Person!</p>
@@ -15,14 +14,14 @@ const Person = ({
         className={style.delete}
         onClick={handleClick}
       >
-        My name is {props.name} and I am {props.age} years old.
+        My name is {restProps.name} and I am {restProps.age} years old.
       </p>
       <input
         type="text"
         onChange={handleChange}
-        value={props.name}
+        value={restProps.name}
       />
-      {props.children && props.children}
+      {restProps.children && restProps.children}
     </div>
   )
 }
