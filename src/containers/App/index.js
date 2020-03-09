@@ -20,6 +20,7 @@ class App extends Component {
       { id: 'aknee32', name: 'Max', age: 24 },
       { id: 'fngrrk321', name: 'Stepan', age: 32 },
     ],
+    isCockpitShown: true,
     isPersonsShown: false,
   }
 
@@ -27,7 +28,7 @@ class App extends Component {
    * Lifecycle methods
    */
   static getDerivedStateFromProps(props, state) {
-    console.log('[App.js] getDerivedStateFromProps', {props}, {state})
+    console.log('[App.js] getDerivedStateFromProps', { props }, { state })
     return state
   }
 
@@ -42,7 +43,7 @@ class App extends Component {
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('[App.js] getSnapshotBeforeUpdate')
-    return { message: 'Snapshot!'}
+    return { message: 'Snapshot!' }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -76,6 +77,11 @@ class App extends Component {
       isPersonsShown: !this.state.isPersonsShown,
     })
   }
+  handleToggleCockpit = () => {
+    this.setState({
+      isCockpitShown: !this.state.isCockpitShown,
+    })
+  }
 
   render() {
     console.log('[App.js] render')
@@ -90,7 +96,12 @@ class App extends Component {
 
     return (
       <div className={style.App}>
-        <Cockpit
+        <button
+          onClick={this.handleToggleCockpit}
+        >
+          Toggle Cockpit
+        </button>
+        {this.state.isCockpitShown && <Cockpit
           state={{
             persons: this.state.persons,
             isPersonsShown: this.state.isPersonsShown,
@@ -99,7 +110,7 @@ class App extends Component {
             handleTogglePersons: this.handleTogglePersons,
           }}
           title={this.props.title}
-        />
+        />}
         <div>
           {renderedPersons}
         </div>
