@@ -4,7 +4,7 @@ import style from './App.css';
 
 import Cockpit from 'src/components/Cockpit'
 import Persons from 'src/components/Persons'
-import WithClass from 'src/hoc/WithClass'
+import withClass from 'src/hoc/withClass'
 
 class App extends Component {
   constructor(props) {
@@ -96,7 +96,7 @@ class App extends Component {
     ))
 
     return (
-      <WithClass classes={[style.App]}>
+      <React.Fragment>
         <button
           onClick={this.handleToggleCockpit}
         >
@@ -111,9 +111,9 @@ class App extends Component {
         <div>
           {renderedPersons}
         </div>
-      </WithClass>
+      </React.Fragment>
     )
   }
 }
 
-export default App;
+export default withClass(App)([style.App]);

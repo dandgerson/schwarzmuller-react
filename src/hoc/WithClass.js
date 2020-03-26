@@ -1,9 +1,9 @@
 import React from 'react'
 
-const WidthClass = props => (
-  <div className={props.classes.join(' ')}>
-    {props.children}
+const widthClass = WrappedComponent => classes => props => (
+  <div className={classes.join(' ')}>
+    <WrappedComponent {...props} />
   </div>
 )
 
-export default WidthClass
+export default widthClass
