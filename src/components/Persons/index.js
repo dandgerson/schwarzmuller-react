@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 
 import Person from 'src/components/Persons/Person'
+import PersonStyle from 'src/components/Persons/Person/Person.css'
 
 class Persons extends PureComponent {
   constructor(props) {
@@ -9,7 +10,7 @@ class Persons extends PureComponent {
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log('[Persons.js] getDerivedStateFromProps', {props}, {state})
+    console.log('[Persons.js] getDerivedStateFromProps', { props }, { state })
     return state
   }
 
@@ -20,8 +21,8 @@ class Persons extends PureComponent {
   // }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    console.log('[Persons.js] getSnapshotBeforeUpdate', {prevProps}, {prevState})
-    return { message: 'Snapshot!'}
+    console.log('[Persons.js] getSnapshotBeforeUpdate', { prevProps }, { prevState })
+    return { message: 'Snapshot!' }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -35,13 +36,19 @@ class Persons extends PureComponent {
   render() {
     console.log('[Persons.js] rendering...')
     return (this.props.persons.map((person, i) => (
-      <Person
+      <div
         key={person.id}
-        handleClick={(event) => this.props.handleDeletePerson(event, { id: person.id })}
-        handleChange={(event) => this.props.handleChangeName(event, { id: person.id })}
-        name={person.name}
-        age={person.age}
-      />
+        className={PersonStyle.Person}
+      >
+        <Person
+          handleClick={(event) => this.props.handleDeletePerson(event, { id: person.id })}
+          handleChange={(event) => this.props.handleChangeName(event, { id: person.id })}
+          name={person.name}
+          age={person.age}
+        >
+          <p>Hello!</p>
+        </Person>
+      </div>
     )))
   }
 }

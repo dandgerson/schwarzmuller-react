@@ -12,7 +12,7 @@ const Cockpit = ({
     console.log('[Cockpit.js] useEffect')
 
     const timer = setTimeout(() => {
-      alert('Saved data to cloud!')
+      console.warn('Saved data to cloud!')
     }, 1000)
 
     return () => {
