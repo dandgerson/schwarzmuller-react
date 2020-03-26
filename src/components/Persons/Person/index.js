@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
 import style from './Person.css'
-import Aux from 'src/hoc/Aux'
+// import Aux from 'src/hoc/Aux'
 class Person extends Component {
   render() {
     console.log('[Person.js] rendering...')
     return (
-      <Aux>
+      <React.Fragment>
         <p>I'm a Person!</p>
         <p
           className={style.delete}
@@ -20,7 +20,7 @@ class Person extends Component {
           value={this.props.name}
         />
         {this.props.children && this.props.children}
-      </Aux>
+      </React.Fragment>
     )
   }
 }
