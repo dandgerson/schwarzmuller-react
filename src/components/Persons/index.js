@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 
 import Person from 'src/components/Persons/Person'
-import PersonStyle from 'src/components/Persons/Person/Person.css'
 
 class Persons extends PureComponent {
   constructor(props) {
@@ -36,19 +35,15 @@ class Persons extends PureComponent {
   render() {
     console.log('[Persons.js] rendering...')
     return (this.props.persons.map((person, i) => (
-      <div
-        key={person.id}
-        className={PersonStyle.Person}
+      <Person
+        key={i}
+        handleClick={(event) => this.props.handleDeletePerson(event, { id: person.id })}
+        handleChange={(event) => this.props.handleChangeName(event, { id: person.id })}
+        name={person.name}
+        age={person.age}
       >
-        <Person
-          handleClick={(event) => this.props.handleDeletePerson(event, { id: person.id })}
-          handleChange={(event) => this.props.handleChangeName(event, { id: person.id })}
-          name={person.name}
-          age={person.age}
-        >
-          <p>Hello!</p>
-        </Person>
-      </div>
+        <p>Hello!</p>
+      </Person>
     )))
   }
 }
