@@ -8,9 +8,11 @@ const Cockpit = ({
   handleTogglePersons,
   ...restProps
 }) => {
+  let buttonEl = null
+
   useEffect(() => {
     console.log('[Cockpit.js] useEffect')
-
+    console.log({ buttonEl })
     const timer = setTimeout(() => {
       console.warn('Saved data to cloud!')
     }, 1000)
@@ -29,6 +31,7 @@ const Cockpit = ({
     }
   })
 
+
   const assignedClasses = []
   personsLength <= 2 && assignedClasses.push(style.red)
   personsLength <= 1 && assignedClasses.push(style.bold)
@@ -43,6 +46,7 @@ const Cockpit = ({
       <button
         className={buttonClasses.join(' ')}
         onClick={handleTogglePersons}
+        ref={elem => buttonEl = elem}
       >
         Toggle persons
       </button>
