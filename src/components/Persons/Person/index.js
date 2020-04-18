@@ -11,20 +11,20 @@ class Person extends Component {
     super(props)
     this.inputEl = React.createRef()
   }
+
+  static contextType = AuthContext
+
   componentDidMount() {
     this.inputEl.current.focus()
+    console.log({ context: this.context })
   }
   render() {
     console.log('[Person.js] rendering...')
     return (
       <React.Fragment>
-        <AuthContext.Consumer>
-          {context => (
-            <p>
-              {`${context.isAuthenticated ? 'Logged in' : 'Isn\'t authenticated'}`}
-            </p>
-          )}
-        </AuthContext.Consumer>
+        <p>
+          {`${this.context.isAuthenticated ? 'Logged in' : 'Isn\'t authenticated'}`}
+        </p>
         <p>I'm a Person!</p>
         <p
           className={style.delete}

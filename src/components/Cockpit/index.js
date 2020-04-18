@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useContext } from 'react'
 
 import AuthContext from 'src/context/AuthContext'
 
@@ -13,6 +13,8 @@ const Cockpit = ({
   const refs = {
     button: useRef(null),
   }
+
+  const authContext = useContext(AuthContext)
 
   useEffect(() => {
     console.log('[Cockpit.js] useEffect')
@@ -55,29 +57,27 @@ const Cockpit = ({
       >
         Toggle persons
       </button>
-      <AuthContext.Consumer>
-        {context => context.isAuthenticated ? (
+      {authContext.isAuthenticated ? (
+        <button
+          onClick={authContext.handleLogout}
+          ref={refs.button}
+          style={{
+            marginLeft: '4px',
+          }}
+        >
+          Logout
+        </button>
+      ) : (
           <button
-            onClick={context.handleLogout}
+            onClick={authContext.handleLogin}
             ref={refs.button}
             style={{
               marginLeft: '4px',
             }}
           >
-            Logout
+            Login
           </button>
-        ) : (
-            <button
-              onClick={context.handleLogin}
-              ref={refs.button}
-              style={{
-                marginLeft: '4px',
-              }}
-            >
-              Login
-            </button>
-          )}
-      </AuthContext.Consumer>
+        )}
     </div>
   )
 }
