@@ -23,6 +23,7 @@ class App extends Component {
     ],
     isCockpitShown: true,
     isPersonsShown: false,
+    changeCounter: 0,
   }
 
   /**
@@ -61,8 +62,9 @@ class App extends Component {
   }
 
   handleChangeName = (event, payload) => {
-    this.setState({
-      persons: this.state.persons.reduce((acc, current) => {
+    event.persist()
+    this.setState((prevState, props) => ({
+      persons: prevState.persons.reduce((acc, current) => {
         current.id === payload.id ? acc.push({
           ...current,
           name: event.target.value,
@@ -70,7 +72,8 @@ class App extends Component {
 
         return acc
       }, []),
-    })
+      changeCounter: prevState.changeCounter + 1,
+    }))
   }
 
   handleTogglePersons = () => {
