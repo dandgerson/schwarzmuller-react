@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import style from './Cockpit.css'
 
@@ -8,11 +8,15 @@ const Cockpit = ({
   handleTogglePersons,
   ...restProps
 }) => {
-  let buttonEl = null
+  const refs = {
+    button: useRef(null),
+  }
 
   useEffect(() => {
     console.log('[Cockpit.js] useEffect')
-    console.log({ buttonEl })
+
+    console.log({ buttonEl: refs.button.current })
+
     const timer = setTimeout(() => {
       console.warn('Saved data to cloud!')
     }, 1000)
@@ -46,7 +50,7 @@ const Cockpit = ({
       <button
         className={buttonClasses.join(' ')}
         onClick={handleTogglePersons}
-        ref={elem => buttonEl = elem}
+        ref={refs.button}
       >
         Toggle persons
       </button>
