@@ -5,6 +5,9 @@ import style from './Person.css'
 // import Aux from 'src/hoc/Aux'
 import withClass from 'src/hoc/withClass'
 class Person extends Component {
+  componentDidMount() {
+    this.inputEl.focus()
+  }
   render() {
     console.log('[Person.js] rendering...')
     return (
@@ -18,6 +21,7 @@ class Person extends Component {
         </p>
         <input
           type="text"
+          ref={inputEl => this.inputEl = inputEl}
           onChange={this.props.handleChange}
           value={this.props.name}
         />
