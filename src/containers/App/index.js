@@ -5,6 +5,7 @@ import style from './App.css';
 import Cockpit from 'src/components/Cockpit'
 import Persons from 'src/components/Persons'
 import withClass from 'src/hoc/withClass'
+import AuthContext from 'src/context/AuthContext'
 
 class App extends Component {
   constructor(props) {
@@ -91,6 +92,9 @@ class App extends Component {
   handleLogin = () => {
     this.setState({ isAuthenticated: true })
   }
+  handleLogout = () => {
+    this.setState({ isAuthenticated: false })
+  }
 
   render() {
     console.log('[App.js] render')
@@ -100,7 +104,6 @@ class App extends Component {
         persons={this.state.persons}
         handleChangeName={this.handleChangeName}
         handleDeletePerson={this.handleDeletePerson}
-        isAuthenticated={this.state.isAuthenticated}
       />
     ))
 
@@ -111,17 +114,22 @@ class App extends Component {
         >
           Toggle Cockpit
         </button>
-        {this.state.isCockpitShown && (
-          <Cockpit
-            personsLength={this.state.persons.length}
-            isPersonsShown={this.state.isPersonsShown}
-            handleTogglePersons={this.handleTogglePersons}
-            title={this.props.title}
-            handleLogin={this.handleLogin}
-          />)}
-        <div>
-          {renderedPersons}
-        </div>
+        <AuthContext.Provider value={{
+          isAuthenticated: this.state.isAuthenticated,
+          handleLogin: this.handleLogin,
+          handleLogout: this.handleLogout,
+        }}>
+          {this.state.isCockpitShown && (
+            <Cockpit
+              personsLength={this.state.persons.length}
+              isPersonsShown={this.state.isPersonsShown}
+              handleTogglePersons={this.handleTogglePersons}
+              title={this.props.title}
+            />)}
+          <div>
+            {renderedPersons}
+          </div>
+        </AuthContext.Provider>
       </React.Fragment>
     )
   }

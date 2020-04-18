@@ -1,23 +1,30 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import style from './Person.css'
-// import Aux from 'src/hoc/Aux'
+import AuthContext from 'src/context/AuthContext'
+
 import withClass from 'src/hoc/withClass'
+
+import style from './Person.css'
 class Person extends Component {
   constructor(props) {
     super(props)
     this.inputEl = React.createRef()
   }
   componentDidMount() {
-    // this.inputEl.focus()
     this.inputEl.current.focus()
   }
   render() {
     console.log('[Person.js] rendering...')
     return (
       <React.Fragment>
-        <p>{`${this.props.isAuthenticated ? 'Logged in': 'Isn\'t authenticated'}`}</p>
+        <AuthContext.Consumer>
+          {context => (
+            <p>
+              {`${context.isAuthenticated ? 'Logged in' : 'Isn\'t authenticated'}`}
+            </p>
+          )}
+        </AuthContext.Consumer>
         <p>I'm a Person!</p>
         <p
           className={style.delete}
@@ -27,7 +34,6 @@ class Person extends Component {
         </p>
         <input
           type="text"
-          // ref={inputEl => this.inputEl = inputEl}
           ref={this.inputEl}
           onChange={this.props.handleChange}
           value={this.props.name}

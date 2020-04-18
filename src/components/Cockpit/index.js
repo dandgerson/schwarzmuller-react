@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 
+import AuthContext from 'src/context/AuthContext'
+
 import style from './Cockpit.css'
 
 const Cockpit = ({
@@ -53,15 +55,29 @@ const Cockpit = ({
       >
         Toggle persons
       </button>
-      <button
-        onClick={other.handleLogin}
-        ref={refs.button}
-        style={{
-          marginLeft: '4px',
-        }}
-      >
-        Login
-      </button>
+      <AuthContext.Consumer>
+        {context => context.isAuthenticated ? (
+          <button
+            onClick={context.handleLogout}
+            ref={refs.button}
+            style={{
+              marginLeft: '4px',
+            }}
+          >
+            Logout
+          </button>
+        ) : (
+            <button
+              onClick={context.handleLogin}
+              ref={refs.button}
+              style={{
+                marginLeft: '4px',
+              }}
+            >
+              Login
+            </button>
+          )}
+      </AuthContext.Consumer>
     </div>
   )
 }
