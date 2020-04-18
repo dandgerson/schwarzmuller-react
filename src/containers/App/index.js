@@ -24,6 +24,7 @@ class App extends Component {
     isCockpitShown: true,
     isPersonsShown: false,
     changeCounter: 0,
+    isAuthenticated: false,
   }
 
   /**
@@ -87,6 +88,10 @@ class App extends Component {
     })
   }
 
+  handleLogin = () => {
+    this.setState({ isAuthenticated: true })
+  }
+
   render() {
     console.log('[App.js] render')
     let renderedPersons = null
@@ -95,6 +100,7 @@ class App extends Component {
         persons={this.state.persons}
         handleChangeName={this.handleChangeName}
         handleDeletePerson={this.handleDeletePerson}
+        isAuthenticated={this.state.isAuthenticated}
       />
     ))
 
@@ -105,12 +111,14 @@ class App extends Component {
         >
           Toggle Cockpit
         </button>
-        {this.state.isCockpitShown && <Cockpit
-          personsLength={this.state.persons.length}
-          isPersonsShown={this.state.isPersonsShown}
-          handleTogglePersons={this.handleTogglePersons}
-          title={this.props.title}
-        />}
+        {this.state.isCockpitShown && (
+          <Cockpit
+            personsLength={this.state.persons.length}
+            isPersonsShown={this.state.isPersonsShown}
+            handleTogglePersons={this.handleTogglePersons}
+            title={this.props.title}
+            handleLogin={this.handleLogin}
+          />)}
         <div>
           {renderedPersons}
         </div>

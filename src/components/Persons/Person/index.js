@@ -17,6 +17,7 @@ class Person extends Component {
     console.log('[Person.js] rendering...')
     return (
       <React.Fragment>
+        <p>{`${this.props.isAuthenticated ? 'Logged in': 'Isn\'t authenticated'}`}</p>
         <p>I'm a Person!</p>
         <p
           className={style.delete}

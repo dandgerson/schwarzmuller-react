@@ -6,7 +6,7 @@ const Cockpit = ({
   personsLength,
   isPersonsShown,
   handleTogglePersons,
-  ...restProps
+  ...other
 }) => {
   const refs = {
     button: useRef(null),
@@ -45,14 +45,22 @@ const Cockpit = ({
 
   return (
     <div className={style.Cockpit}>
-      <h1>{restProps.title}</h1>
+      <h1>{other.title}</h1>
       <p className={assignedClasses.join(' ')}>Dynamically styled text.</p>
       <button
         className={buttonClasses.join(' ')}
         onClick={handleTogglePersons}
-        ref={refs.button}
       >
         Toggle persons
+      </button>
+      <button
+        onClick={other.handleLogin}
+        ref={refs.button}
+        style={{
+          marginLeft: '4px',
+        }}
+      >
+        Login
       </button>
     </div>
   )

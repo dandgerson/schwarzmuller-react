@@ -41,6 +41,7 @@ class Persons extends PureComponent {
         handleChange={(event) => this.props.handleChangeName(event, { id: person.id })}
         name={person.name}
         age={person.age}
+        isAuthenticated={this.props.isAuthenticated}
       >
         <p>Hello!</p>
       </Person>
